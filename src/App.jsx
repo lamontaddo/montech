@@ -17,6 +17,7 @@ export default function App() {
           <nav className="nav">
             <a href="#work">Work</a>
             <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
             <a href="#contact" className="btn btn--outline">Start a Project</a>
           </nav>
         </div>
@@ -27,15 +28,19 @@ export default function App() {
         <section className="hero">
           <div className="container">
             <div className="glass hero-card">
+              <div className="hero-topline">
+                <span className="badge badge--gold">Base engagement: $30k</span>
+                <span className="badge" style={{ marginLeft: '.5rem' }}>Deployment included</span>
+              </div>
               <h1>
                 We design & build modern <em>web</em> and <em>mobile</em> products.
               </h1>
               <p className="lead">
-                Boutique engineering studio crafting fast, elegant apps for the web,
-                iOS, and Android—powered by robust APIs and cloud infra.
+                Full-stack delivery—frontend, backend, database, and AWS (S3 for storage)—
+                shipped with care and performance in mind.
               </p>
               <div className="cta">
-                <a href="mailto:lamontaddo85@gmail.com?subject=Project%20Inquiry%20—%20monTech" className="btn btn--gold">Start a Project</a>
+                <a href="#pricing" className="btn btn--gold">See what’s included</a>
                 <a href="https://lamontaddo.com" target="_blank" rel="noreferrer" className="btn btn--ghost">View Portfolio</a>
               </div>
             </div>
@@ -81,7 +86,100 @@ export default function App() {
           </div>
         </section>
 
-        {/* Simple “work” anchor for now (you can expand later) */}
+        {/* Pricing */}
+        <section id="pricing" className="section">
+          <div className="container">
+            <h2 className="section-title">Pricing</h2>
+
+            <div className="pricing">
+              <div className="card price-card">
+                <div className="price-head">
+                  <h3>Studio Build</h3>
+                  <div className="price">
+                    <span className="amount">$30k</span>
+                    <span className="term">fixed</span>
+                  </div>
+                  <p className="muted">Everything you need to launch v1 with confidence.</p>
+                </div>
+
+                <ul className="included">
+                  <li>Frontend: React/Next.js web app</li>
+                  <li>Mobile: React Native for iOS & Android</li>
+                  <li>Backend APIs: Node.js (REST/GraphQL)</li>
+                  <li>Database: MongoDB (or Postgres)</li>
+                  <li>Cloud: AWS setup with S3 for storage</li>
+                  <li>Auth, payments (Stripe), email, analytics</li>
+                  <li>CI/CD, envs, logging, error monitoring</li>
+                  <li>Accessibility, performance pass, SEO basics</li>
+                  <li><strong>Deployment included</strong> (GitHub Pages/Vercel for static, or AWS EC2/S3+CloudFront for full stack)</li>
+                  <li>Documentation + handoff</li>
+                  <li>30-day launch warranty</li>
+                </ul>
+
+                <div className="pill-row">
+                  <span className="pill">Timeline: ~3-6 months</span>
+                  <span className="pill">Fixed scope v1</span>
+                </div>
+
+                <a
+                  href="mailto:lamontaddo85@gmail.com?subject=Project%20Inquiry%20—%20monTech%20($30k%20Studio%20Build)"
+                  className="btn btn--gold btn--lg"
+                >
+                  Start at $30k
+                </a>
+              </div>
+
+              <div className="card addons-card">
+                <h3>Add-ons (optional)</h3>
+                <ul className="included">
+                  <li>Branding & design system <span className="muted">+ $5k</span></li>
+                  <li>AI features / assistants <span className="muted">+ $7.5k+</span></li>
+                  <li>Subscriptions / marketplaces <span className="muted">+ $6k+</span></li>
+                  <li>Multi-tenant / orgs & roles <span className="muted">+ $10k+</span></li>
+                  <li>Advanced analytics / dashboards <span className="muted">+ $4k+</span></li>
+                </ul>
+
+                <h4 style={{ marginTop: '1rem' }}>Care plans</h4>
+                <ul className="included">
+                  <li>Lite · <span className="muted">$1.5k/mo</span> · bug fixes & small tweaks</li>
+                  <li>Standard · <span className="muted">$3k/mo</span> · feature support & ops</li>
+                  <li>Scale · <span className="muted">$6k/mo</span> · roadmap & growth</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="faq glass">
+              <details>
+                <summary>What exactly is included in the $30k?</summary>
+                <p>
+                  A complete v1: web + mobile clients, secure APIs, database, AWS setup (including S3),
+                  auth, payments, basic analytics, CI/CD, deployment, documentation, and a 30-day post-launch warranty.
+                </p>
+              </details>
+              <details>
+                <summary>Where do you deploy?</summary>
+                <p>
+                  We handle deployment to your choice of host: GitHub Pages or Vercel for static SPAs,
+                  and AWS (EC2 or S3+CloudFront) for full stacks—plus basic DNS and HTTPS setup.
+                </p>
+              </details>
+              <details>
+                <summary>How do we handle scope?</summary>
+                <p>
+                  We lock a clear feature list before kickoff. Anything new goes into a mini-scope or a care plan.
+                </p>
+              </details>
+              <details>
+                <summary>Payment terms?</summary>
+                <p>
+                  50% to start, 25% mid-build, 25% on delivery. Alternative schedules available for longer roadmaps.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        {/* Work */}
         <section id="work" className="section section--muted">
           <div className="container">
             <h2 className="section-title">Selected work</h2>
@@ -96,7 +194,7 @@ export default function App() {
           <div className="container contact">
             <h2 className="section-title">Let’s build</h2>
             <p className="lead muted">
-              Tell us about your idea. We’ll scope, design, and ship with care.
+              Tell us about your idea. We’ll scope, design, deploy, and ship with care.
             </p>
             <a
               href="mailto:lamontaddo85@gmail.com?subject=Project%20Inquiry%20—%20monTech"
@@ -132,53 +230,39 @@ function Service({ title, desc, icon }) {
   )
 }
 
-/* --- Minimal inline SVG icons (no external deps) --- */
-function IconWindow() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="M3 9h18" />
-      <circle cx="7" cy="7" r="1" />
-      <circle cx="10" cy="7" r="1" />
-    </svg>
-  )
-}
-function IconMobile() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="7" y="2" width="10" height="20" rx="2" />
-      <circle cx="12" cy="18" r="1" />
-    </svg>
-  )
-}
-function IconCloud() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M6 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.2A4 4 0 1 1 18 18H6z" />
-    </svg>
-  )
-}
-function IconDesign() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <polygon points="12 3 21 9 12 15 3 9 12 3" />
-      <path d="M21 15l-9 6-9-6" />
-    </svg>
-  )
-}
-function IconCart() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="9" cy="20" r="1.5" />
-      <circle cx="17" cy="20" r="1.5" />
-      <path d="M3 4h2l2.7 9.3A2 2 0 0 0 9.6 15H17a2 2 0 0 0 1.9-1.4L21 8H6" />
-    </svg>
-  )
-}
-function IconSpark() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
-    </svg>
-  )
-}
+/* --- Minimal inline SVG icons --- */
+function IconWindow() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M3 9h18" />
+    <circle cx="7" cy="7" r="1" /><circle cx="10" cy="7" r="1" />
+  </svg>
+)}
+function IconMobile() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="7" y="2" width="10" height="20" rx="2" />
+    <circle cx="12" cy="18" r="1" />
+  </svg>
+)}
+function IconCloud() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 18a4 4 0 1 1 0-8 5 5 0 0 1 9.6-1.2A4 4 0 1 1 18 18H6z" />
+  </svg>
+)}
+function IconDesign() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <polygon points="12 3 21 9 12 15 3 9 12 3" />
+    <path d="M21 15l-9 6-9-6" />
+  </svg>
+)}
+function IconCart() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" />
+    <path d="M3 4h2l2.7 9.3A2 2 0 0 0 9.6 15H17a2 2 0 0 0 1.9-1.4L21 8H6" />
+  </svg>
+)}
+function IconSpark() { return (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
+  </svg>
+)}
