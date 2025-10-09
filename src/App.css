@@ -197,3 +197,67 @@ body {
 .faq details:first-of-type { border-top: 0; }
 .faq summary { cursor: pointer; font-weight: 600; }
 .faq p { margin: .5rem 0 0; color: var(--muted); }
+/* --- Portfolio grid (refined) --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px)); /* caps tile width */
+  gap: 16px;
+  justify-content: center; /* center tiles so they don't stretch full width */
+}
+
+.project-card {
+  display: grid;
+  grid-template-rows: auto 1fr; /* height comes from the thumb's aspect-ratio */
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--panel), transparent 0%);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212,175,55,0.45);
+}
+
+/* Uniform thumbnail: 4:3, cover crop */
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;                 /* <<< key: consistent height */
+  background-size: cover;              /* crop to fill */
+  background-position: center;         /* focus center */
+  background-repeat: no-repeat;
+  transition: transform .35s ease;
+}
+.project-card:hover .project-thumb { transform: scale(1.03); }
+
+.project-body { padding: 14px; display: grid; gap: .4rem; }
+.stack-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .2rem; }
+
+/* --- Portfolio: images only --- */
+.projects-grid.images-only {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  gap: 16px;
+  justify-content: center;
+}
+
+.project-tile {
+  width: 100%;
+  aspect-ratio: 4 / 3;          /* consistent tiles */
+  background-size: cover;       /* elegant crop */
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  background-color: #000;       /* letterbox fill for transparent areas */
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, border-color .2s ease, filter .2s ease;
+}
+.project-tile:hover {
+  transform: translateY(-2px) scale(1.015);
+  border-color: rgba(212,175,55,0.45);
+  filter: saturate(1.05) contrast(1.02);
+}

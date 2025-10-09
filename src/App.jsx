@@ -1,6 +1,31 @@
 import bg from './assets/montech-icon.webp'
 import './App.css'
 
+// --- Gallery: prefer src/assets/projects, also include /public/img1..img7 ---
+
+// 1) Load from src/assets/projects (case-safe, stable order)
+const srcEntries = Object.entries(
+  import.meta.glob('./assets/projects/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP,avif,AVIF,gif,GIF}', {
+    eager: true,
+    as: 'url',
+  })
+).sort(([a], [b]) => a.localeCompare(b))
+const fromSrc = srcEntries.map(([, url]) => url)
+
+// 2) Also check public/img1.png ... public/img7.png (fixed order)
+const fromPublic = Array.from({ length: 7 }, (_, i) => `/img${i + 1}.png`)
+
+// 3) Merge + de-dupe (case-insensitive) + cap to 7
+const merged = [...fromSrc, ...fromPublic]
+const seen = new Set()
+const gallery = merged.filter((u) => {
+  if (!u) return false
+  const key = u.toLowerCase()
+  if (seen.has(key)) return false
+  seen.add(key)
+  return true
+}).slice(0, 7)
+
 export default function App() {
   return (
     <div className="site" style={{ '--bg': `url(${bg})` }}>
@@ -28,7 +53,10 @@ export default function App() {
         <section className="hero">
           <div className="container">
             <div className="glass hero-card">
-            
+              <div className="hero-topline">
+                <span className="badge badge--gold">Base engagement: $30k</span>
+                <span className="badge" style={{ marginLeft: '.5rem' }}>Deployment included</span>
+              </div>
               <h1>
                 We design & build modern <em>web</em> and <em>mobile</em> products.
               </h1>
@@ -183,6 +211,19 @@ export default function App() {
             <p className="muted">
               Ask to see live demos—barber booking ecosystem, chat platforms, and marketplace apps.
             </p>
+
+            {/* Images grid (7 max) */}
+            <div className="projects-grid images-only" style={{ marginTop: '1rem' }}>
+              {gallery.map((src) => (
+                <div
+                  key={src}
+                  className="project-tile"
+                  role="img"
+                  aria-label="Project image"
+                  style={{ backgroundImage: `url(${src})` }}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -228,38 +269,50 @@ function Service({ title, desc, icon }) {
 }
 
 /* --- Minimal inline SVG icons --- */
-function IconWindow() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <rect x="3" y="5" width="18" height="14" rx="2" />
-    <path d="M3 9h18" />
-    <circle cx="7" cy="7" r="1" /><circle cx="10" cy="7" r="1" />
-  </svg>
-)}
-function IconMobile() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <rect x="7" y="2" width="10" height="20" rx="2" />
-    <circle cx="12" cy="18" r="1" />
-  </svg>
-)}
-function IconCloud() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M6 18a4 4 0 1 1 0-8 5 5 0 0 1 9.6-1.2A4 4 0 1 1 18 18H6z" />
-  </svg>
-)}
-function IconDesign() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <polygon points="12 3 21 9 12 15 3 9 12 3" />
-    <path d="M21 15l-9 6-9-6" />
-  </svg>
-)}
-function IconCart() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" />
-    <path d="M3 4h2l2.7 9.3A2 2 0 0 0 9.6 15H17a2 2 0 0 0 1.9-1.4L21 8H6" />
-  </svg>
-)}
-function IconSpark() { return (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
-  </svg>
-)}
+function IconWindow() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 9h18" />
+      <circle cx="7" cy="7" r="1" /><circle cx="10" cy="7" r="1" />
+    </svg>
+  )
+}
+function IconMobile() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="7" y="2" width="10" height="20" rx="2" />
+      <circle cx="12" cy="18" r="1" />
+    </svg>
+  )
+}
+function IconCloud() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 18a4 4 0 1 1 0-8 5 5 0 0 1 9.6-1.2A4 4 0 1 1 18 18H6z" />
+    </svg>
+  )
+}
+function IconDesign() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <polygon points="12 3 21 9 12 15 3 9 12 3" />
+      <path d="M21 15l-9 6-9-6" />
+    </svg>
+  )
+}
+function IconCart() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" />
+      <path d="M3 4h2l2.7 9.3A2 2 0 0 0 9.6 15H17a2 2 0 0 0 1.9-1.4L21 8H6" />
+    </svg>
+  )
+}
+function IconSpark() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
+    </svg>
+  )
+}
