@@ -28,10 +28,7 @@ export default function App() {
         <section className="hero">
           <div className="container">
             <div className="glass hero-card">
-              <div className="hero-topline">
-                <span className="badge badge--gold">Base engagement: $30k</span>
-                <span className="badge" style={{ marginLeft: '.5rem' }}>Deployment included</span>
-              </div>
+            
               <h1>
                 We design & build modern <em>web</em> and <em>mobile</em> products.
               </h1>
