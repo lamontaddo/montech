@@ -7,9 +7,11 @@ import './App.css'
 const srcEntries = Object.entries(
   import.meta.glob('./assets/projects/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP,avif,AVIF,gif,GIF}', {
     eager: true,
-    as: 'url',
+    query: '?url',
+    import: 'default',
   })
 ).sort(([a], [b]) => a.localeCompare(b))
+
 const fromSrc = srcEntries.map(([, url]) => url)
 
 // 2) Also check public/img1.png ... public/img7.png (fixed order)
@@ -54,8 +56,6 @@ export default function App() {
           <div className="container">
             <div className="glass hero-card">
               <div className="hero-topline">
-                <span className="badge badge--gold">Base engagement: $30k</span>
-                <span className="badge" style={{ marginLeft: '.5rem' }}>Deployment included</span>
               </div>
               <h1>
                 We design & build modern <em>web</em> and <em>mobile</em> products.
