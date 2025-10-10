@@ -147,11 +147,11 @@ export default function App() {
                 </div>
 
                 <a
-                  href="mailto:lamontaddo85@gmail.com?subject=Project%20Inquiry%20—%20monTech%20($30k%20Studio%20Build)"
-                  className="btn btn--gold btn--lg"
-                >
-                  Start at $30k
-                </a>
+  href="mailto:montech.enterprise.company@gmail.com?subject=Project%20Inquiry%20—%20monTech%20($30k%20Studio%20Build)"
+  className="btn btn--gold btn--lg"
+>
+  Start at $30k
+</a>
               </div>
 
               <div className="card addons-card">
@@ -235,11 +235,11 @@ export default function App() {
               Tell us about your idea. We’ll scope, design, deploy, and ship with care.
             </p>
             <a
-              href="mailto:lamontaddo85@gmail.com?subject=Project%20Inquiry%20—%20monTech"
-              className="btn btn--gold btn--lg"
-            >
-              Email monTech
-            </a>
+  href="mailto:montech.enterprise.company@gmail.com?subject=Project%20Inquiry%20—%20monTech"
+  className="btn btn--gold btn--lg"
+>
+  Email monTech
+</a>
           </div>
         </section>
       </main>
