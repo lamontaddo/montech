@@ -249,7 +249,7 @@ export default function App() {
           <span className="muted">© {new Date().getFullYear()} monTech Enterprise</span>
           <div className="footer-links">
             <a href="https://lamontaddo.com" target="_blank" rel="noreferrer">Portfolio</a>
-            <a href="mailto:lamontaddo85@gmail.com">Contact</a>
+            <a href="mailto:montech.enterprise.company@gmail.com">Contact</a>
           </div>
         </div>
       </footer>
